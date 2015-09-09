@@ -19,9 +19,28 @@
 
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-          <li><%= link_to "Manage Listings", seller_path %></li>
-          <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <li class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Seller Account
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to "Manage Listings", seller_path %></li>
+              <li><%= link_to "Sales History", sales_path %></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= current_user.name%>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to "Purchase History", purchases_path %></li>
+              <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
       <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li>
           <li><%= link_to "Sign In", new_user_session_path %></li>
